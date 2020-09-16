@@ -1,0 +1,3 @@
+rootProject.name = "vuexko"
+include ':app'
+include ':vuexko'
