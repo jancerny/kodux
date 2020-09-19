@@ -7,15 +7,15 @@ import kotlinx.coroutines.channels.Channel.Factory.BUFFERED
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-class Store<S, M : Mutation<S>, A : Action<S, M, A>>(
+class Store<S>(
     initialState: S,
     private val scope: CoroutineScope = GlobalScope
 ) {
 
     private val stateFlow: MutableStateFlow<S> = MutableStateFlow(initialState)
-    private val mutationsChannel: BroadcastChannel<M> = BroadcastChannel(BUFFERED)
+    private val mutationsChannel: BroadcastChannel<Mutation<S>> = BroadcastChannel(BUFFERED)
 
-    private val mutations: Flow<M> get() = mutationsChannel.asFlow()
+    private val mutations: Flow<Mutation<S>> get() = mutationsChannel.asFlow()
 
     val state: StateFlow<S> get() = stateFlow
 
@@ -29,13 +29,13 @@ class Store<S, M : Mutation<S>, A : Action<S, M, A>>(
         }
     }
 
-    fun dispatch(action: A) {
+    fun dispatch(action: Action<S>) {
         scope.launch {
             action.exec(this@Store)
         }
     }
 
-    fun commit(mutation: M) {
+    fun commit(mutation: Mutation<S>) {
         scope.launch {
             mutationsChannel.send(mutation)
         }

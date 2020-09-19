@@ -1,12 +1,9 @@
 package id.cerny.jan.vuexko.sample.vuexko
 
 import id.cerny.jan.vuexko.Action
-import id.cerny.jan.vuexko.Store
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
-interface AppAction : Action<AppState, AppMutation, AppAction>
+interface AppAction : Action<AppState>
 
 object Actions {
     object Increment : AppAction {
