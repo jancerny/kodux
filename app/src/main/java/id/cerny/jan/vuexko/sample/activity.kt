@@ -2,11 +2,13 @@ package id.cerny.jan.vuexko.sample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
+import androidx.viewbinding.ViewBinding
+import id.cerny.jan.vuexko.navigation.NavigationMutations
+import id.cerny.jan.vuexko.navigation.Screen
 import id.cerny.jan.vuexko.sample.databinding.ActivityMainBinding
-import id.cerny.jan.vuexko.sample.vuexko.Actions
-import id.cerny.jan.vuexko.sample.vuexko.AppAction
-import id.cerny.jan.vuexko.sample.vuexko.AppState
+import id.cerny.jan.vuexko.sample.databinding.ScreenAboutBinding
+import id.cerny.jan.vuexko.sample.databinding.ScreenHomeBinding
+import id.cerny.jan.vuexko.sample.vuexko.AppScreen
 import id.cerny.jan.vuexko.sample.vuexko.store
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -26,21 +28,37 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        binding.increment.setOnClickListener {
-            store.dispatch(Actions.Increment)
-        }
-
         scope.launch {
             store.state.collect {
-                show(it)
+                showScreen(it.navigationState.currentScreen)
             }
+        }
+
+        binding.navbar.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.home -> store.commit(NavigationMutations.ShowScreen(AppScreen.Home))
+                R.id.about -> store.commit(NavigationMutations.ShowScreen(AppScreen.About))
+            }
+
+            true
         }
     }
 
-    private fun show(state: AppState) {
-        binding.increment.isEnabled = !state.progress
-        binding.currentValue.isVisible = !state.progress
-        binding.progress.isVisible = state.progress
-        binding.currentValue.text = state.counter.toString()
+    private fun showScreen(screen: Screen) {
+        when (screen) {
+            AppScreen.Home -> setContentUI(HomeUI(ScreenHomeBinding.inflate(layoutInflater)))
+            AppScreen.About -> setContentUI(AboutUI(ScreenAboutBinding.inflate(layoutInflater)))
+        }
+
     }
+
+    private fun setContentUI(ui: MainScreenUI) {
+        binding.content.removeAllViews()
+        binding.content.addView(ui.binding.root)
+    }
+
+}
+
+interface MainScreenUI {
+    val binding: ViewBinding
 }
