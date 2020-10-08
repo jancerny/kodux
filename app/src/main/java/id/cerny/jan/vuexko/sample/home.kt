@@ -16,7 +16,7 @@ class HomeUI(override val binding: ScreenHomeBinding) : MainScreenUI {
 
     init {
         binding.increment.setOnClickListener {
-            store.dispatch(Actions.Increment)
+            store.dispatch(Actions.Increment())
         }
 
         scope.launch {

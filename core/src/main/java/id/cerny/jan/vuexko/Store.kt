@@ -29,9 +29,9 @@ class Store<S>(
         }
     }
 
-    fun dispatch(action: Action<S>) {
+    fun dispatch(action: Action<Store<S>>) {
         scope.launch {
-            action.exec(this@Store)
+            action.invoke(this@Store)
         }
     }
 
