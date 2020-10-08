@@ -12,11 +12,19 @@ fun <T : StateWithNavigation> NavigationMutation(mutate: (NavigationState) -> Na
 
 object NavigationMutations {
 
-    fun <T : StateWithNavigation> ShowScreen(screen: Screen) =
+    fun <T : StateWithNavigation> ShowScreen(
+        screen: Screen,
+        stackOptions: StackOptions = StackOptions.NONE
+    ) =
         NavigationMutation<T> { navigationState ->
+            val history = when (stackOptions) {
+                StackOptions.NONE -> navigationState.screenHistory.plus(navigationState.currentScreen)
+                StackOptions.CLEAR_ALL -> emptyList()
+                StackOptions.CLEAR_UNTIL_SAME -> navigationState.screenHistory.takeWhile { it != screen }
+            }
             navigationState.copy(
                 currentScreen = screen,
-                screenHistory = navigationState.screenHistory.plus(navigationState.currentScreen)
+                screenHistory = history
             )
         }
 
