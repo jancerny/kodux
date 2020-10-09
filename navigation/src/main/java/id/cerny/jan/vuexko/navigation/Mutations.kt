@@ -31,7 +31,9 @@ object NavigationMutations {
     fun <T : StateWithNavigation> GoBack() =
         NavigationMutation<T> { navigationState ->
             navigationState.copy(
-                currentScreen = navigationState.screenHistory.lastOrNull() ?: Screen.None,
+                currentScreen = navigationState.screenHistory.lastOrNull() ?: Screen.None(
+                    navigationState.currentScreen
+                ),
                 screenHistory = navigationState.screenHistory.dropLast(1)
             )
         }

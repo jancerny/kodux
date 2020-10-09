@@ -5,10 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.snackbar.Snackbar
-import id.cerny.jan.vuexko.navigation.Dialog
-import id.cerny.jan.vuexko.navigation.Message
-import id.cerny.jan.vuexko.navigation.NavigationMutations
-import id.cerny.jan.vuexko.navigation.Screen
+import id.cerny.jan.vuexko.navigation.*
 import id.cerny.jan.vuexko.sample.databinding.ActivityMainBinding
 import id.cerny.jan.vuexko.sample.databinding.ScreenAboutBinding
 import id.cerny.jan.vuexko.sample.databinding.ScreenHomeBinding
@@ -44,6 +41,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        scope.cancel()
+    }
+
+    override fun onBackPressed() {
+        store.commit(NavigationMutations.GoBack())
+    }
+
     private fun observeNavigationState() {
         scope.launch {
             launch {
@@ -71,6 +77,12 @@ class MainActivity : AppCompatActivity() {
         when (screen) {
             AppScreen.Home -> setContentUI(HomeUI(ScreenHomeBinding.inflate(layoutInflater)))
             AppScreen.About -> setContentUI(AboutUI(ScreenAboutBinding.inflate(layoutInflater)))
+            is Screen.None -> {
+                screen.lastScreen?.let { lastScreen ->
+                    store.commit(NavigationMutations.ShowScreen(lastScreen, StackOptions.CLEAR_ALL))
+                    finish()
+                }
+            }
         }
     }
 
