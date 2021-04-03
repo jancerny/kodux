@@ -1,27 +1,30 @@
 package id.cerny.jan.kodux
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.BroadcastChannel
+import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel.Factory.BUFFERED
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 
 class Store<S>(
     initialState: S,
-    private val scope: CoroutineScope = GlobalScope
+    mutationsBufferCapacity: Int = 0,
+    onMutationsBufferOverflow: BufferOverflow = BufferOverflow.SUSPEND,
+    private val scope: CoroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 ) {
 
     private val stateFlow: MutableStateFlow<S> = MutableStateFlow(initialState)
-    private val mutationsChannel: BroadcastChannel<Mutation<S>> = BroadcastChannel(BUFFERED)
-
-    private val mutations: Flow<Mutation<S>> get() = mutationsChannel.asFlow()
+    private val mutationsFlow: MutableSharedFlow<Mutation<S>> = MutableSharedFlow(
+        replay = 0,
+        extraBufferCapacity = mutationsBufferCapacity,
+        onBufferOverflow = onMutationsBufferOverflow
+    )
 
     val state: StateFlow<S> get() = stateFlow
 
     init {
         scope.launch {
-            mutations.scan(initialState) { state, mutation ->
+            mutationsFlow.scan(initialState) { state, mutation ->
                 mutation(state)
             }.collect { newState ->
                 stateFlow.value = newState
@@ -37,7 +40,7 @@ class Store<S>(
 
     fun commit(mutation: Mutation<S>) {
         scope.launch {
-            mutationsChannel.send(mutation)
+            mutationsFlow.emit(mutation)
         }
     }
 
