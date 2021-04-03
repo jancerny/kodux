@@ -1,4 +1,4 @@
-package id.cerny.jan.vuexko
+package id.cerny.jan.kodux
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope

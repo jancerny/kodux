@@ -1,4 +1,4 @@
-package id.cerny.jan.vuexko.navigation
+package id.cerny.jan.kodux.navigation
 
 interface Screen {
     data class None(val lastScreen: Screen? = null) : Screen

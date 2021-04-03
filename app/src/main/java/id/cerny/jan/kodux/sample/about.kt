@@ -1,8 +1,8 @@
-package id.cerny.jan.vuexko.sample
+package id.cerny.jan.kodux.sample
 
-import id.cerny.jan.vuexko.navigation.NavigationMutations
-import id.cerny.jan.vuexko.sample.databinding.ScreenAboutBinding
-import id.cerny.jan.vuexko.sample.vuexko.store
+import id.cerny.jan.kodux.navigation.NavigationMutations
+import id.cerny.jan.kodux.sample.databinding.ScreenAboutBinding
+import id.cerny.jan.kodux.sample.kodux.store
 
 class AboutUI(override val binding: ScreenAboutBinding) : MainScreenUI {
     init {

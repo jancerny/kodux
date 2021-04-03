@@ -1,6 +1,6 @@
-package id.cerny.jan.vuexko.sample.vuexko
+package id.cerny.jan.kodux.sample.kodux
 
-import id.cerny.jan.vuexko.Mutation
+import id.cerny.jan.kodux.Mutation
 
 typealias AppMutation = Mutation<AppState>
 

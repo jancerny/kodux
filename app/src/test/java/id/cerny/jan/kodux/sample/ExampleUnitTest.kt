@@ -1,4 +1,4 @@
-package id.cerny.jan.vuexko.sample
+package id.cerny.jan.kodux.sample
 
 import org.junit.Test
 

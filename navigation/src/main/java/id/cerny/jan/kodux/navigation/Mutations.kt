@@ -1,8 +1,8 @@
 @file:Suppress("Unused", "FunctionName")
 
-package id.cerny.jan.vuexko.navigation
+package id.cerny.jan.kodux.navigation
 
-import id.cerny.jan.vuexko.Mutation
+import id.cerny.jan.kodux.Mutation
 
 @Suppress("Unchecked_Cast")
 fun <T : StateWithNavigation> NavigationMutation(mutate: (NavigationState) -> NavigationState): Mutation<T> =

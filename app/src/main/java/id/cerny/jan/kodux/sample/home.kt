@@ -1,10 +1,10 @@
-package id.cerny.jan.vuexko.sample
+package id.cerny.jan.kodux.sample
 
 import androidx.core.view.isVisible
-import id.cerny.jan.vuexko.sample.databinding.ScreenHomeBinding
-import id.cerny.jan.vuexko.sample.vuexko.Actions
-import id.cerny.jan.vuexko.sample.vuexko.AppState
-import id.cerny.jan.vuexko.sample.vuexko.store
+import id.cerny.jan.kodux.sample.databinding.ScreenHomeBinding
+import id.cerny.jan.kodux.sample.kodux.Actions
+import id.cerny.jan.kodux.sample.kodux.AppState
+import id.cerny.jan.kodux.sample.kodux.store
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

@@ -1,17 +1,17 @@
-package id.cerny.jan.vuexko.sample
+package id.cerny.jan.kodux.sample
 
 import android.app.AlertDialog
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.snackbar.Snackbar
-import id.cerny.jan.vuexko.navigation.*
-import id.cerny.jan.vuexko.sample.databinding.ActivityMainBinding
-import id.cerny.jan.vuexko.sample.databinding.ScreenAboutBinding
-import id.cerny.jan.vuexko.sample.databinding.ScreenHomeBinding
-import id.cerny.jan.vuexko.sample.vuexko.AppScreen
-import id.cerny.jan.vuexko.sample.vuexko.Getters
-import id.cerny.jan.vuexko.sample.vuexko.store
+import id.cerny.jan.kodux.navigation.*
+import id.cerny.jan.kodux.sample.databinding.ActivityMainBinding
+import id.cerny.jan.kodux.sample.databinding.ScreenAboutBinding
+import id.cerny.jan.kodux.sample.databinding.ScreenHomeBinding
+import id.cerny.jan.kodux.sample.kodux.AppScreen
+import id.cerny.jan.kodux.sample.kodux.Getters
+import id.cerny.jan.kodux.sample.kodux.store
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 

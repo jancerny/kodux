@@ -1,7 +1,7 @@
-package id.cerny.jan.vuexko.sample.vuexko
+package id.cerny.jan.kodux.sample.kodux
 
-import id.cerny.jan.vuexko.navigation.NavigationState
-import id.cerny.jan.vuexko.navigation.StateWithNavigation
+import id.cerny.jan.kodux.navigation.NavigationState
+import id.cerny.jan.kodux.navigation.StateWithNavigation
 
 data class AppState(
     val progress: Boolean = false,

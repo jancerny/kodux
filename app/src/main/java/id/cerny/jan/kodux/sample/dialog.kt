@@ -1,6 +1,6 @@
-package id.cerny.jan.vuexko.sample
+package id.cerny.jan.kodux.sample
 
-import id.cerny.jan.vuexko.navigation.Dialog
+import id.cerny.jan.kodux.navigation.Dialog
 
 data class AppDialog(
     val title: String? = null,

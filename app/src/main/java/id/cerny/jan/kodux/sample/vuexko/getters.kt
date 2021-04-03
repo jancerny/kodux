@@ -1,8 +1,8 @@
-package id.cerny.jan.vuexko.sample.vuexko
+package id.cerny.jan.kodux.sample.kodux
 
-import id.cerny.jan.vuexko.navigation.Dialog
-import id.cerny.jan.vuexko.navigation.Message
-import id.cerny.jan.vuexko.navigation.Screen
+import id.cerny.jan.kodux.navigation.Dialog
+import id.cerny.jan.kodux.navigation.Message
+import id.cerny.jan.kodux.navigation.Screen
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
