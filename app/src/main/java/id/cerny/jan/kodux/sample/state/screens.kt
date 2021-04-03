@@ -1,4 +1,4 @@
-package id.cerny.jan.kodux.sample.kodux
+package id.cerny.jan.kodux.sample.state
 
 import id.cerny.jan.kodux.navigation.Screen
 

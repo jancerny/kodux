@@ -3,8 +3,8 @@ package id.cerny.jan.kodux.sample
 import androidx.core.view.isVisible
 import id.cerny.jan.kodux.sample.databinding.ScreenHomeBinding
 import id.cerny.jan.kodux.sample.kodux.Actions
-import id.cerny.jan.kodux.sample.kodux.AppState
-import id.cerny.jan.kodux.sample.kodux.store
+import id.cerny.jan.kodux.sample.state.AppState
+import id.cerny.jan.kodux.sample.state.store
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

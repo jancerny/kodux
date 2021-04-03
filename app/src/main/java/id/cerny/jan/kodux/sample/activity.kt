@@ -9,9 +9,9 @@ import id.cerny.jan.kodux.navigation.*
 import id.cerny.jan.kodux.sample.databinding.ActivityMainBinding
 import id.cerny.jan.kodux.sample.databinding.ScreenAboutBinding
 import id.cerny.jan.kodux.sample.databinding.ScreenHomeBinding
-import id.cerny.jan.kodux.sample.kodux.AppScreen
-import id.cerny.jan.kodux.sample.kodux.Getters
-import id.cerny.jan.kodux.sample.kodux.store
+import id.cerny.jan.kodux.sample.state.AppScreen
+import id.cerny.jan.kodux.sample.state.Getters
+import id.cerny.jan.kodux.sample.state.store
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 
